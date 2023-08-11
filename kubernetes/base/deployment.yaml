@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatgptwimt
+spec:
+  progressDeadlineSeconds: 600
+  selector:
+    matchLabels:
+      app: chatgptwimt
+  template:
+    metadata:
+      labels:
+        app: chatgptwimt
+        version: "{buildNumber}"
+    spec:
+      containers:
+      - name: chatgptwimt
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        image: whereismytransport.azurecr.io/chatgptwimt:{buildNumber}
+        imagePullPolicy: Always
+        ports:
+         - containerPort: 9000
+      imagePullSecrets:
+        - name: chatgptwimt-imagepull-secret
+  strategy:
+    type: Recreate

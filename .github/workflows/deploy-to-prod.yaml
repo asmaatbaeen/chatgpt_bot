@@ -1,0 +1,51 @@
+name: deploy to prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_version:
+        type: string
+        description: Optional artifact version number
+
+jobs:
+  download-artifact:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.echo-version.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: build-artifact.txt
+          path: artifacts
+          workflow: pipeline.yml
+
+      # This echoes the latest artifact number + the input version number
+      # If an input is provided, it will use that, otherwise it uses the
+      # latest build artifact. Note, it does not validate that the provided
+      # artifact/version number is valid
+      - name: Echo artifact version
+        id: echo-version
+        run: |
+          VER_BA=$(cat artifacts/build-artifact.txt)
+          VER_INPUT=${{ github.event.inputs.artifact_version}}
+          echo Latest build artifact: $VER_BA
+          echo Provided artifact version: $VER_INPUT
+          [[ -n $VER_INPUT ]] && VER_FINAL="$VER_INPUT" || VER_FINAL="$VER_BA"
+          echo Using version: $VER_FINAL
+          echo "version=$VER_FINAL" >> $GITHUB_OUTPUT
+
+  prod:
+    needs: download-artifact
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      cluster: prod
+      environment: prod
+      version: ${{needs.download-artifact.outputs.version}}
+    secrets:
+      registry-username: ${{ vars.WHEREISMYTRANSPORT_ACR_USERNAME }}
+      registry-password: ${{ secrets.WHEREISMYTRANSPORT_ACR_PASSWORD }}
+      azure-credentials: ${{ secrets.DATATOOLS_PROD_SERVICE_PRINCIPAL }}

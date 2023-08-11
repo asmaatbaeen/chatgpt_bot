@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "slack-bot"
+version = "0.1.0"
+description = "A slack bot to interface with our docs and ChatGPT"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+langchain = "^0.0.166"
+llama-index = "^0.6.5"
+openai = "^0.27.6"
+slack-bolt = "^1.18.0"
+slack = "^0.0.2"
+pypdf = "^3.8.1"
+chromadb = "^0.3.22"
+hnswlib = "^0.7.0"
+loguru = "^0.7.0"
+PyPDF2 = "^3.0.1"
+fastapi = "^0.95.2"
+uvicorn = "^0.22.0"
+APScheduler = "^3.10.1"
+docx2txt = "^0.8"
+
+[tool.poetry.scripts]
+start = "src.app:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
