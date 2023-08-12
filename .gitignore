@@ -52,3 +52,6 @@ poetry/core/*
 chroma-collections.parquet
 chroma-embeddings.parquet
 index/
+Dockerfile
+kubernetes
+.dockerignore
