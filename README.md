@@ -13,17 +13,6 @@ poetry shell
 poetry install
 python src/app.py
 ```
-(Still need to add a start script, couldn't get it working)
-
-### Running in docker
-To run in docker:
-1. Ensure you have docker installed
-2. Go to the slack bot directory and run:
-```
-cd /slack_bot
-docker build -t slackgpt_bot .
-docker run slackgpt_bot
-```
 
 
 ## Setup for chatAPI
