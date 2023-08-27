@@ -4,11 +4,9 @@ Welcome to the repository for MyChatBot! This repository contains the code for b
 
 ## Setup for Chatbot with Slack API
 
-### Running with Poetry (Recommended)
+To run the chatbot using Slack API, follow these steps:
 
-To run the chatbot using Poetry, follow these steps:
-
-1. Make sure you have Poetry installed. If not, you can visit [poetry](https://python-poetry.org/docs/) to install it.
+1. Make sure you have Poetry installed. If not, you can visit [Poetry's official website](https://python-poetry.org/docs/) for installation instructions.
 
 2. Clone this repository to your local machine:
 
@@ -32,18 +30,15 @@ poetry shell
 
 ```bash
 poetry install
-``` 
+```
 
-
-## Setup for ChatAPI
-
-To set up the ChatAPI, follow these steps:
+## Setup for Slack ChatAPI 
 
 1. Open the `app.py` file in the `/mychatbot/slack_bot/src` directory.
 
 2. Locate the `launch_slackapp` function inside the `app.py` file.
 
-3. Replace the `SLACK_APP_TOKEN` value with your Slack app token.
+3. Replace the `SLACK_APP_TOKEN` value with your Slack app token:
 
 ```python
 SLACK_APP_TOKEN = "your-slack-app-token"
@@ -56,8 +51,6 @@ SLACK_APP_TOKEN = "your-slack-app-token"
 ```bash
 python src/app.py
 ```
----
-
 
 ## Setup for Chatbot with API
 
@@ -90,10 +83,7 @@ poetry install
 ```bash
 python src/app.py
 ```
- 
 
 Feel free to explore and customize this repository to create your own custom chatbot with a knowledge base. For more detailed instructions and additional features, you can refer to the [original article](https://betterprogramming.pub/how-to-build-your-own-custom-chatgpt-with-custom-knowledge-base-4e61ad82427e).
-
-If you encounter any issues or have questions, please don't hesitate to reach out to [your-email@example.com](mailto:your-email@example.com).
 
 Happy bot-building!
