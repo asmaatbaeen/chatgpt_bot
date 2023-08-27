@@ -64,21 +64,7 @@ To set up the chatbot API, follow these steps:
 cd mychatbot/api
 ```
 
-3. Activate the virtual environment using Poetry:
-
-```bash
-poetry shell
-```
-
-4. Install the required dependencies:
-
-```bash
-poetry install
-```
-
-5. Open the `app.py` file and customize the API endpoints and functionality as needed.
-
-6. Run the API:
+3. Run the API:
 
 ```bash
 python src/app.py
